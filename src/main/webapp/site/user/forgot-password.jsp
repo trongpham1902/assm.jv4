@@ -1,27 +1,44 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<div class="login-card">
-    <h3>Forgot Password</h3>
+<div class="login-container">
+    <div class="login-card">
+        <h3>Forgot Password</h3>
 
-   <c:if test="${not empty message}">
-    <div class="alert alert-info">${message}</div>
-</c:if>
+        <c:if test="${not empty message}">
+            <div class="alert alert-info">${message}</div>
+        </c:if>
 
-<form action="<c:url value='/ForgotPassword'/>" method="post">
-    <div class="mb-3">
-        <label>Email</label>
-        <input type="email" class="form-control" name="email" placeholder="Enter your email" required>
-    </div>
-    <button type="submit" class="btn btn-primary w-100">Reset Password</button>
-</form>
+        <form action="<c:url value='/ForgotPassword'/>" method="post">
+            <div class="mb-3">
+                <label>Email</label>
+                <input type="email" class="form-control" name="email" placeholder="Enter your email" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Reset Password</button>
+        </form>
 
-    <div style="text-align:center; margin-top:15px;">
-        <a href="<c:url value='/Login'/>" style="color:#7ab4ff;">Back to Login</a>
+        <div style="text-align:center; margin-top:15px;">
+            <a href="<c:url value='/Login'/>" style="color:#7ab4ff;">Back to Login</a>
+        </div>
     </div>
 </div>
 
 <style>
+/* Body nền tối */
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a;
+}
+
+/* Container căn giữa ngang, không quá cao */
+.login-container {
+    display: flex;
+    justify-content: center; /* căn giữa ngang */
+    padding: 50px 0;         /* khoảng cách trên/dưới vừa đủ */
+}
+
+/* Card */
 .login-card {
     background-color: #2c2c2c;
     padding: 30px;

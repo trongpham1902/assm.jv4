@@ -21,6 +21,16 @@ public class ShareDAO extends AbstractDAO<Share> {
         query.setParameter("uid", userId);
         return query.getResultList();
     }
+    public List<String> findEmailsByVideo(String videoId) {
+        String jpql =
+            "SELECT s.emails FROM Share s WHERE s.video.id = :vid";
+
+        TypedQuery<String> query =
+            em.createQuery(jpql, String.class);
+        query.setParameter("vid", videoId);
+
+        return query.getResultList();
+    }
     
     // Bạn có thể thêm các phương thức tìm kiếm khác nếu cần,
     // ví dụ: tìm các lượt share của 1 video...

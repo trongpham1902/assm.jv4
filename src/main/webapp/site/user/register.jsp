@@ -13,10 +13,7 @@
             <label class="form-label">Username</label>
             <input type="text" class="form-control" name="username" required>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Password</label>
-            <input type="password" class="form-control" name="password" required>
-        </div>
+   
         <div class="mb-3">
             <label class="form-label">Fullname</label>
             <input type="text" class="form-control" name="fullname" required>

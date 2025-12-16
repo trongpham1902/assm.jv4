@@ -1,46 +1,65 @@
 package poly.entity;
 
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="\"User\"") // Dùng dấu ngoặc kép vì "User" là từ khóa trong SQL
-public class User {
-    
-    @Id
-    @Column(name="Id")
-    private String id;
-    
-    @Column(name="Password")
-    private String password;
-    
-    @Column(name="Email")
-    private String email;
-    
-    @Column(name="Fullname")
-    private String fullname;
-    
-    @Column(name="Admin")
-    private Boolean admin = false; // Mặc định là false (người dùng thường)
 
-    // Liên kết 1-N tới bảng Favorite
-    @OneToMany(mappedBy="user")
-    List<Favorite> favorites;
-    
-    // Liên kết 1-N tới bảng Share
-    @OneToMany(mappedBy="user")
-    List<Share> shares;
-    
-    // --- Constructors (có thể thêm constructor rỗng và có tham số) ---
-    
+import java.util.List;
+
+@Entity
+@Table(name = "\"User\"") // Vì User là từ khóa SQL Server
+public class User {
+
+    @Id
+    @Column(name = "Id")
+    private String id;
+
+    @Column(name = "Password", nullable = false)
+    private String password;
+
+    @Column(name = "Email", nullable = false)
+    private String email;
+
+    @Column(name = "Fullname", nullable = false)
+    private String fullname;
+
+    @Column(name = "Admin")
+    private Boolean admin = false;
+
+    // ========== RELATIONSHIPS ==========
+
+    // User -> Favorite (1-N)
+    @OneToMany(
+        mappedBy = "user",
+        cascade = CascadeType.REMOVE,
+        orphanRemoval = true
+    )
+    private List<Favorite> favorites;
+
+    // User -> Share (1-N)
+    @OneToMany(
+        mappedBy = "user",
+        cascade = CascadeType.REMOVE,
+        orphanRemoval = true
+    )
+    private List<Share> shares;
+
+    // ========== CONSTRUCTORS ==========
+
     public User() {
     }
 
-    // --- Getters and Setters ---
+    public User(String id) {
+        this.id = id;
+    }
+
+    // ========== GETTERS & SETTERS ==========
 
     public String getId() {
         return id;

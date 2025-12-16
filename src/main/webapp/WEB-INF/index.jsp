@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -49,7 +50,7 @@
 
         <div class="d-grid gap-4">
             <div>
-                <a href="${pageContext.request.contextPath}/favorite-user" class="btn btn-dark-gray">
+                <a href="<c:url value='/favorite-user'/>" class="btn btn-dark-gray">
                     Bài 3: Trang Video yêu thích
                 </a>
                 <div class="note mt-1">
@@ -58,7 +59,7 @@
             </div>
 
             <div>
-                <a href="${pageContext.request.contextPath}/favorite-report" class="btn btn-dark-gray">
+                <a href="<c:url value='/favorite-report'/>" class="btn btn-dark-gray">
                     Bài 4: Thống kê Video
                 </a>
                 <div class="note mt-1">
@@ -67,5 +68,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Optional Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

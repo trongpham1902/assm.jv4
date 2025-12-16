@@ -26,16 +26,23 @@ public abstract class AbstractDAO<T> {
         }
     }
 
+    protected EntityManager getEM() {
+        return JpaUtil.getEntityManager();
+    }
+
     public T update(T entity) {
-        EntityTransaction trans = em.getTransaction();
+        EntityManager em = getEM();
+        EntityTransaction tx = em.getTransaction();
         try {
-            trans.begin();
-            em.merge(entity);
-            trans.commit();
-            return entity;
+            tx.begin();
+            T merged = em.merge(entity);
+            tx.commit();
+            return merged;
         } catch (Exception e) {
-            trans.rollback();
+            if (tx.isActive()) tx.rollback();
             throw new RuntimeException(e);
+        } finally {
+            em.close(); // 🔥 BẮT BUỘC
         }
     }
 
@@ -63,4 +70,4 @@ public abstract class AbstractDAO<T> {
     }
     
     // Bạn có thể thêm các phương thức chung khác (findAll có phân trang,...)
-}
+} 

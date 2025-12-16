@@ -22,7 +22,7 @@
             
             <div class="form-group">
                 <label>YOUR FRIEND'S EMAIL?</label>
-                <input type="text" class="form-control" name="emails" 
+                <input type="text" class="form-control" name="email" 
                        placeholder="email1@example.com, email2@example.com, ..." 
                        required>
                 <small class="form-text text-muted">

@@ -11,11 +11,12 @@
 
 			<div class="col-md-4">
 				<div class="video-card text-center border p-2 h-100">
-					<a href="<c:url value='/detail?id=${v.id}'/>"> 
-						<img class="card-img-top" 
-						     src="<c:url value='${v.poster}'/>" 
-						     alt="${v.title}"
-						     onerror="this.onerror=null;this.src='<c:url value="/images/poly.jpg"/>';">
+					<a href="<c:url value='/detail?id=${v.id}'/>"> <img
+						class="card-img-top"
+						src="<c:url value='/logos/${v.poster}'/>?t=${v.id}"
+						alt="${v.title}"
+						onerror='this.onerror=null;this.src="<c:url value='/images/poly.jpg'/>";'>
+
 					</a>
 					<div class="video-title bg-light p-1 fw-bold mt-2">${v.title}</div>
 

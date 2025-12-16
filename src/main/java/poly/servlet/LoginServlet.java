@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        // Forward sang JSP login
+
         request.setAttribute("view", "/site/user/login.jsp");
         request.getRequestDispatcher("/site/layout.jsp").forward(request, response);
     }
@@ -43,11 +43,10 @@ public class LoginServlet extends HttpServlet {
 
         String userId = request.getParameter("username");
         String pass = request.getParameter("password");
-        String remember = request.getParameter("remember");
 
         String hashedPass = null;
         try {
-            hashedPass = hashPassword(pass); // hash password nhập
+            hashedPass = hashPassword(pass);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("message", "Lỗi khi xử lý mật khẩu!");
@@ -56,27 +55,27 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        // Tìm user theo username và password hash
-        User user = userDAO.checkLogin(userId, hashedPass); // bạn cần viết checkLoginHash trong DAO
+        // Kiểm tra login bằng username + password đã hash
+        User user = userDAO.checkLogin(userId, hashedPass);
 
         if (user != null) {
-            // Đăng nhập thành công
+
             HttpSession session = request.getSession();
-            session.setAttribute("user", user); // Lưu user vào session
+            session.setAttribute("user", user);
 
-            // Xử lý "Remember me" nếu cần
-            // if (remember != null) { ... }
+            
+                response.sendRedirect(request.getContextPath() + "/index");
+            
 
-            response.sendRedirect(request.getContextPath() + "/index");
         } else {
-            // Đăng nhập thất bại
+            // Sai tài khoản hoặc mật khẩu
             request.setAttribute("message", "Sai tên đăng nhập hoặc mật khẩu!");
             request.setAttribute("view", "/site/user/login.jsp");
             request.getRequestDispatcher("/site/layout.jsp").forward(request, response);
         }
     }
 
-    // Hàm hash mật khẩu SHA-256
+    // Hash password SHA-256
     public static String hashPassword(String password) throws Exception {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         byte[] hash = md.digest(password.getBytes(StandardCharsets.UTF_8));

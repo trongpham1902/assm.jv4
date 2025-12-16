@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        /* Layout 3 phần tách biệt hoàn toàn */
+        /* Layout 3 phần tách biệt */
         html, body {
             height: 100%;
             margin: 0;
@@ -21,9 +21,9 @@
             flex-direction: column;
         }
 
-        header {
-            flex-shrink: 0; /* không bị bóp */
+        header, footer {
             width: 100%;
+            flex-shrink: 0;
         }
 
         main {
@@ -31,22 +31,18 @@
             width: 100%;
         }
 
-        footer { 
-            flex-shrink: 0; /* không bị bóp */
-            width: 100%;
-        }
-
-        /* Navbar dày hơn */
+        /* Navbar đẹp hơn */
         .navbar {
-            padding-top: 18px !important;
-            padding-bottom: 18px !important;
+            padding-top: 18px;
+            padding-bottom: 18px;
             font-size: 1.1rem;
         }
+
         .navbar-brand {
             font-size: 1.5rem;
         }
 
-        /* Slider height nếu cần */
+        /* Slider */
         .carousel-item img {
             height: 420px;
             object-fit: cover;
@@ -56,26 +52,23 @@
 </head>
 <body>
 
-<!-- ===== HEADER (đứng riêng) ===== -->
+<!-- ===== HEADER ===== -->
 <header>
     <jsp:include page="/common/header.jsp" />
 </header>
 
-<!-- ===== MAIN (đứng riêng) ===== -->
-<main>
-    <div class="d-flex justify-content-center mt-5">
-        <jsp:include page="${view}" />
-    </div>
+<!-- ===== MAIN (QUAN TRỌNG) ===== -->
+<main class="container mt-4">
+    <jsp:include page="${view}" />
 </main>
 
-<!-- ===== FOOTER (đứng riêng) ===== -->
+<!-- ===== FOOTER ===== -->
 <footer>
     <jsp:include page="/common/footer.jsp" />
 </footer>
 
-<!-- Bootstrap 5 JS Bundle -->
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
-

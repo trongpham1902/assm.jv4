@@ -1,39 +1,57 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<div class="login-card">
-    <h3>Reset Password</h3>
+<div class="login-container">
+    <div class="login-card">
+        <h3>Reset Password</h3>
 
-    <c:if test="${not empty message}">
-        <div class="alert alert-danger">${message}</div>
-    </c:if>
+        <c:if test="${not empty message}">
+            <div class="alert alert-danger">${message}</div>
+        </c:if>
 
-    <form action="<c:url value='/ChangePassword'/>" method="post">
-    <input type="hidden" name="email" value="${email}" />
+        <form action="<c:url value='/ChangePassword'/>" method="post">
+            <input type="hidden" name="email" value="${email}" />
 
-    <div class="mb-3">
-        <label class="form-label">Current Password</label>
-        <input type="password" class="form-control" name="currentPassword" placeholder="Enter current password" required>
+            <div class="mb-3">
+                <label class="form-label">Current Password</label>
+                <input type="password" class="form-control" name="currentPassword" placeholder="Enter current password" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">New Password</label>
+                <input type="password" class="form-control" name="newPassword" placeholder="Enter new password" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm new password" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Reset Password</button>
+        </form>
+
+        <div style="text-align:center; margin-top:15px;">
+            <a href="<c:url value='/Login'/>" style="color:#7ab4ff;">Back to Login</a>
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label class="form-label">New Password</label>
-        <input type="password" class="form-control" name="newPassword" placeholder="Enter new password" required>
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">Confirm Password</label>
-        <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm new password" required>
-    </div>
-
-    <button type="submit" class="btn btn-primary w-100">Reset Password</button>
-</form>
-
- 
 </div>
 
-
 <style>
+/* Body nền tối */
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a;
+}
+
+/* Container căn giữa ngang, không quá cao */
+.login-container {
+    display: flex;
+    justify-content: center; /* căn giữa ngang */
+    padding: 50px 0;         /* khoảng cách trên/dưới vừa đủ */
+}
+
+/* Card */
 .login-card {
     background-color: #2c2c2c;
     padding: 30px;
